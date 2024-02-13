@@ -1,4 +1,3 @@
-import type { InferGetStaticPropsType, GetStaticProps } from "next";
 export async function GET() {
   try {
     const res = await fetch(
