@@ -221,87 +221,91 @@ const Home: React.FC = () => {
             <div ref={lastStockRef}></div>
             <Sheet isOpen={isOpen} onClose={() => setOpen(false)}>
               <Sheet.Container>
-                <Sheet.Content className="bg-slate-800 overflow-y-scroll">
-                  <div className="grid grid-cols-1 divide-y">
-                    <div className=" mt-5 flex flex-row mb-4">
-                      <div className="h-16 w-16 rounded-lg border-solid border-2 border-gray-500  text-center ml-4 ">
-                        <div className=" mt-5 overflow-hidden text-base text-gray-300">
-                          {selectedStock?.ticker}
+                <Sheet.Scroller draggableAt="bottom">
+                  <Sheet.Content className="bg-slate-800 overflow-y-scroll scroll-my-3">
+                    <div className="grid grid-cols-1 divide-y">
+                      <div className=" mt-5 flex flex-row mb-4">
+                        <div className="h-16 w-16 rounded-lg border-solid border-2 border-gray-500  text-center ml-4 ">
+                          <div className=" mt-5 overflow-hidden text-base text-gray-300">
+                            {selectedStock?.ticker}
+                          </div>
+                        </div>
+                        <div className="mx-5 my-3  flex flex-col">
+                          <p className="text-white text-2xl">
+                            {selectedStock?.ticker}
+                          </p>
+                          <p className="text-white text-sm">
+                            {" "}
+                            {selectedStockDetails?.round_lot}
+                          </p>
                         </div>
                       </div>
-                      <div className="mx-5 my-3  flex flex-col">
-                        <p className="text-white text-2xl">
-                          {selectedStock?.ticker}
-                        </p>
-                        <p className="text-white text-sm">
+                      <div className=" mb-4">
+                        <div className="mx-5 my-4 text-white text-2xl">
+                          About
+                        </div>
+                        <div className="mx-5 text-gray-400 text-sm">
+                          {selectedStockDetails?.description}
+                        </div>
+                      </div>
+                      <div className=" mt-3">
+                        <div className="mx-5 my-5 text-white text-2xl">
+                          Statistics
+                        </div>
+                      </div>
+                    </div>
+
+                    <div></div>
+                    <div className=" grid-flow-col grid-cols-2 justify-between">
+                      <div className=" flex flex-row justify-around">
+                        <div>
                           {" "}
-                          {selectedStockDetails?.round_lot}
-                        </p>
-                      </div>
-                    </div>
-                    <div className=" mb-4">
-                      <div className="mx-5 my-4 text-white text-2xl">About</div>
-                      <div className="mx-5 text-gray-400 text-sm">
-                        {selectedStockDetails?.description}
-                      </div>
-                    </div>
-                    <div className=" mt-3">
-                      <div className="mx-5 my-5 text-white text-2xl">
-                        Statistics
-                      </div>
-                    </div>
-                  </div>
+                          <div className="mx-5 text-gray-500 text-base flex flex-col">
+                            Open
+                          </div>
+                          <div className="mx-5 text-white text-base mb-4">
+                            {selectedStockDetails?.cik}
+                          </div>
+                          <div className="mx-5 text-gray-500 text-base flex flex-col">
+                            Close Price:
+                          </div>
+                          <div className="mx-5 text-white text-base mb-4">
+                            {selectedStockDetails?.sic_code}
+                          </div>
+                        </div>
 
-                  <div></div>
-                  <div className=" grid-flow-col grid-cols-2 justify-between">
-                    <div className=" flex flex-row justify-around">
-                      <div>
-                        {" "}
-                        <div className="mx-5 text-gray-500 text-base flex flex-col">
-                          Open
-                        </div>
-                        <div className="mx-5 text-white text-base mb-4">
-                          {selectedStockDetails?.cik}
-                        </div>
-                        <div className="mx-5 text-gray-500 text-base flex flex-col">
-                          Close Price:
-                        </div>
-                        <div className="mx-5 text-white text-base mb-4">
-                          {selectedStockDetails?.sic_code}
+                        <div>
+                          {" "}
+                          <div className="mx-5 text-gray-500 text-base flex flex-col">
+                            Highest Price:
+                          </div>
+                          <div className="mx-5 text-white text-base mb-4">
+                            {selectedStockDetails?.total_employees}
+                          </div>
+                          <div className="mx-5 text-gray-500 text-base flex flex-col">
+                            Lowest Price:
+                          </div>
+                          <div className="mx-5 text-white text-base mb-4">
+                            {selectedStockDetails?.sic_code}
+                          </div>
                         </div>
                       </div>
-
-                      <div>
-                        {" "}
-                        <div className="mx-5 text-gray-500 text-base flex flex-col">
-                          Highest Price:
-                        </div>
-                        <div className="mx-5 text-white text-base mb-4">
-                          {selectedStockDetails?.total_employees}
-                        </div>
-                        <div className="mx-5 text-gray-500 text-base flex flex-col">
-                          Lowest Price:
-                        </div>
-                        <div className="mx-5 text-white text-base mb-4">
-                          {selectedStockDetails?.sic_code}
-                        </div>
-                      </div>
+                      {selectedStockDetails?.homepage_url ? (
+                        <Link
+                          target="_blank"
+                          className=" mx-4 block text-center mt-5"
+                          href={selectedStockDetails?.homepage_url}
+                        >
+                          <p className=" text-white text-lg border-2 border-solid border-gray-500 py-3 rounded-2xl mt-0">
+                            Visit Website
+                          </p>
+                        </Link>
+                      ) : (
+                        ""
+                      )}
                     </div>
-                    {selectedStockDetails?.homepage_url ? (
-                      <Link
-                        target="_blank"
-                        className=" mx-4 block text-center mt-5"
-                        href={selectedStockDetails?.homepage_url}
-                      >
-                        <p className=" text-white text-lg border-2 border-solid border-gray-500 py-3 rounded-2xl mt-0">
-                          Visit Website
-                        </p>
-                      </Link>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                </Sheet.Content>
+                  </Sheet.Content>
+                </Sheet.Scroller>
               </Sheet.Container>
               <Sheet.Backdrop />
             </Sheet>
