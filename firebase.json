@@ -1,0 +1,6 @@
+{
+  "firestore": {
+    "rules": "firebaseTEST.ts",
+    "indexes": "firestore.indexesTest.json"
+  }
+}
