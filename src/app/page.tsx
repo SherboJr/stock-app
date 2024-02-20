@@ -221,7 +221,7 @@ const Home: React.FC = () => {
             <div ref={lastStockRef}></div>
             <Sheet isOpen={isOpen} onClose={() => setOpen(false)}>
               <Sheet.Container>
-                <Sheet.Content className="bg-slate-800">
+                <Sheet.Content className="bg-slate-800 overflow-y-scroll">
                   <div className="grid grid-cols-1 divide-y">
                     <div className=" mt-5 flex flex-row mb-4">
                       <div className="h-16 w-16 rounded-lg border-solid border-2 border-gray-500  text-center ml-4 ">
